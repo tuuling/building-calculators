@@ -80,23 +80,6 @@
             "browserTarget": "building-calculators:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -109,20 +92,12 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "building-calculators:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "building-calculators:serve:production"
-            }
-          }
         }
       }
-    }},
-  "defaultProject": "building-calculators"
+    }
+  },
+  "defaultProject": "building-calculators",
+  "cli": {
+    "analytics": "0a9abf14-f39f-4a3d-bffb-96b1ca274614"
+  }
 }
