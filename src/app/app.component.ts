@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Woodgrade } from "./types/Woodgrade";
-import { woodgrades } from "./types/Woodgrade";
+import {Component, OnInit} from '@angular/core';
+import {Woodgrade} from "./types/Woodgrade";
+import {woodgrades} from "./types/Woodgrade";
 
 
 @Component({
@@ -8,7 +8,7 @@ import { woodgrades } from "./types/Woodgrade";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   woodgrades = woodgrades;
   woodgrade: Woodgrade = woodgrades.get('c14');
@@ -22,7 +22,9 @@ export class AppComponent implements OnInit{
 
   loads = {
     dead: 0.7, //G
-    live: 2, //Q
+    long: 0.2, //Q1
+    mid: 0.3, //Q2
+    short: 0.1, //Q3
   }
 
   isoViewport = {
@@ -30,6 +32,14 @@ export class AppComponent implements OnInit{
     width: 480,
     padding: 20
   }
+
+  usageClass: number = 1;
+
+  kmodMap = new Map([
+    [1, [0.6, 0.7, 0.8, 0.9]],
+    [2, [0.6, 0.7, 0.8, 0.9]],
+    [3, [0.5, 0.55, 0.65, 0.7]]
+  ])
 
 
   ngOnInit() {
@@ -59,10 +69,10 @@ export class AppComponent implements OnInit{
   }
 
   get isoScale() {
-    const d30 = Math.PI/6;
+    const d30 = Math.PI / 6;
     const scale = this.isoViewport.width / (
-      Math.cos(d30)*this.beam.length
-      + Math.cos(d30)*(this.beam.spacing*2 + this.beam.breath*3));
+      Math.cos(d30) * this.beam.length
+      + Math.cos(d30) * (this.beam.spacing * 2 + this.beam.breath * 3));
     return {
       breath: Math.floor(this.beam.breath * scale),
       height: Math.floor(this.beam.height * scale),
@@ -72,11 +82,14 @@ export class AppComponent implements OnInit{
   }
 
   get totalLoad() {
-    return this.loads.live * 1.5 + this.loads.dead * 1.2;
+    return this.loads.long * 1.5
+      + this.loads.mid * 1.5
+      + this.loads.short * 1.5
+      + this.loads.dead * 1.2;
   }
 
   get distLoad() {
-    return (this.totalLoad/1000) * this.beam.spacing;
+    return (this.totalLoad / 1000) * this.beam.spacing;
   }
 
   get bendingMoment() {
@@ -92,7 +105,15 @@ export class AppComponent implements OnInit{
   }
 
   get kmod() {
-    return 0.5;
+    let uClass = this.kmodMap.get(this.usageClass);
+    console.log(this.usageClass);
+    const totalLoad = this.loads.dead + this.loads.long + this.loads.mid + this.loads.short;
+
+    return (this.loads.dead / totalLoad) * uClass[0] +
+      (this.loads.long / totalLoad) * uClass[1] +
+      (this.loads.mid / totalLoad) * uClass[2] +
+      (this.loads.short / totalLoad) * uClass[3];
+
   }
 
   cloneCord(x) {
@@ -101,13 +122,13 @@ export class AppComponent implements OnInit{
     const right = this.right;
 
     return {
-      x: right(s.spacing)*x,
-      y: up(s.spacing)*x
+      x: right(s.spacing) * x,
+      y: up(s.spacing) * x
     }
   }
 
   get ratio() {
-    return 1 / ((this.isoScale.length + this.isoScale.spacing*2 + this.isoScale.breath*3) / this.isoScale.length);
+    return 1 / ((this.isoScale.length + this.isoScale.spacing * 2 + this.isoScale.breath * 3) / this.isoScale.length);
   }
 
   get origin() {
@@ -117,10 +138,10 @@ export class AppComponent implements OnInit{
     }
   }
 
-  up = y => -Math.floor(Math.sin(Math.PI/6) * y);
-  down = y => Math.floor(Math.sin(Math.PI/6) * y);
-  left = x => -Math.floor(Math.cos(Math.PI/6) * x);
-  right = x => Math.floor(Math.cos(Math.PI/6) * x);
+  up = y => -Math.floor(Math.sin(Math.PI / 6) * y);
+  down = y => Math.floor(Math.sin(Math.PI / 6) * y);
+  left = x => -Math.floor(Math.cos(Math.PI / 6) * x);
+  right = x => Math.floor(Math.cos(Math.PI / 6) * x);
 
   get isoD() {
     const s = this.isoScale;

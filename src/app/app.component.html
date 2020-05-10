@@ -140,26 +140,26 @@
                 <div class="col-6">
                   <div class="form-group">
                     <label for="kasutusklass-input">Kasutusklass:</label>
-                    <select class="form-control form-control-sm" id="kasutusklass-input">
-                      <option value="1">1 - Kuiv ruum</option>
-                      <option value="2">2 - Niiske Ruum</option>
-                      <option value="3">3 - Välistingimused</option>
+                    <select [(ngModel)]="usageClass" class="form-control form-control-sm" id="kasutusklass-input">
+                      <option [ngValue]="1">1 - Kuiv ruum</option>
+                      <option [ngValue]="2">2 - Niiske Ruum</option>
+                      <option [ngValue]="3">3 - Välistingimused</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="roomtype-input">Ruumi tüüp:</label>
-                    <select class="form-control form-control-sm" id="roomtype-input">
-                      <option value="2">Eluruumid, haiglapalatid, hotellide numbritoad, köögid, wc</option>
-                      <option value="3">Bürooruumid</option>
-                      <option value="3">Klassiruumid, kohvikud, lugemissaalid</option>
-                      <option value="4">Kirikud, teatri- ja kinosaalid, konverentsiruumid, ootesaalid</option>
-                      <option value="5">Muuseumid, ühiskondlike hoonete vestibüülid ja koridorid, võimlad, näitelavad, katuseterrassid</option>
-                      <option value="5">Kauplused, kaubamajad</option>
-                    </select>
-                  </div>
-                </div>
+<!--                <div class="col-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label for="roomtype-input">Ruumi tüüp:</label>-->
+<!--                    <select class="form-control form-control-sm" id="roomtype-input">-->
+<!--                      <option value="2">Eluruumid, haiglapalatid, hotellide numbritoad, köögid, wc</option>-->
+<!--                      <option value="3">Bürooruumid</option>-->
+<!--                      <option value="3">Klassiruumid, kohvikud, lugemissaalid</option>-->
+<!--                      <option value="4">Kirikud, teatri- ja kinosaalid, konverentsiruumid, ootesaalid</option>-->
+<!--                      <option value="5">Muuseumid, ühiskondlike hoonete vestibüülid ja koridorid, võimlad, näitelavad, katuseterrassid</option>-->
+<!--                      <option value="5">Kauplused, kaubamajad</option>-->
+<!--                    </select>-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
 
             </div>
@@ -171,7 +171,7 @@
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                   <div class="form-group">
                     <label for="deadload-input">Alaline koormus:</label>
                     <div class="input-group input-group-sm">
@@ -181,7 +181,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                   <div class="form-group">
                     <label for="partialfactorG-input">Osavarutegur:</label>
                     <div class="input-group input-group-sm">
@@ -195,24 +195,24 @@
                     <label for="deaload-calc-input">Arvutusväärtus:</label>
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend"><span class="input-group-text">G<sub>d</sub>=</span></div>
-                      <input [value]="loads.dead * 1.2" disabled="disabled" type="number" class="form-control" id="deaload-calc-input"/>
+                      <input [value]="loads.dead * 1.2" disabled="disabled" class="form-control" id="deaload-calc-input"/>
                       <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                   <div class="form-group">
-                    <label for="liveload-input">Kasuskoormus:</label>
+                    <label for="liveload-input">Pikajaline koormus:</label>
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend"><span class="input-group-text">Q =</span></div>
-                      <input [(ngModel)]="loads.live" type="number" class="form-control" id="liveload-input" name="liveload" />
+                      <input [(ngModel)]="loads.long" type="number" class="form-control" id="liveload-input" name="liveload" />
                       <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
                     </div>
                   </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                   <div class="form-group">
                     <label for="partialfactorQ-input">Osavarutegur:</label>
                     <div class="input-group input-group-sm">
@@ -226,7 +226,69 @@
                     <label for="liveload-calc-input">Arvutusväärtus:</label>
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend"><span class="input-group-text">Q<sub>d</sub> =</span></div>
-                      <input [value]="loads.live * 1.5" disabled="disabled" type="number" class="form-control" id="liveload-calc-input"/>
+                      <input [value]="loads.long * 1.5" disabled="disabled" class="form-control" id="liveload-calc-input"/>
+                      <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="form-group">
+                    <label for="liveload-input">Keskkestev koormus:</label>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend"><span class="input-group-text">Q =</span></div>
+                      <input [(ngModel)]="loads.mid" type="number" class="form-control" id="liveload-input" name="liveload" />
+                      <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="partialfactorQ-input">Osavarutegur:</label>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend"><span class="input-group-text">γ<sub>Q</sub> =</span></div>
+                      <input value="1.5" disabled="disabled" type="number" class="form-control" id="partialfactorQ-input"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="liveload-calc-input">Arvutusväärtus:</label>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend"><span class="input-group-text">Q<sub>d</sub> =</span></div>
+                      <input [value]="loads.mid * 1.5" disabled="disabled" class="form-control" id="liveload-calc-input"/>
+                      <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <div class="form-group">
+                    <label for="liveload-input">Lühiajaline koormus:</label>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend"><span class="input-group-text">Q =</span></div>
+                      <input [(ngModel)]="loads.short" type="number" class="form-control" id="liveload-input" name="liveload" />
+                      <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="partialfactorQ-input">Osavarutegur:</label>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend"><span class="input-group-text">γ<sub>Q</sub> =</span></div>
+                      <input value="1.5" disabled="disabled" type="number" class="form-control" id="partialfactorQ-input"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="liveload-calc-input">Arvutusväärtus:</label>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend"><span class="input-group-text">Q<sub>d</sub> =</span></div>
+                      <input [value]="loads.short * 1.5" disabled="disabled" class="form-control" id="liveload-calc-input"/>
                       <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
                     </div>
                   </div>
