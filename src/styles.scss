@@ -42,6 +42,8 @@
 
 @import "~bootstrap-scss/print";
 
+@import '~katex/dist/katex.css';
+
 @import "styles/theme/bs-overrides";
 
 @import "styles/main";

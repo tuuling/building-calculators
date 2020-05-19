@@ -106,7 +106,6 @@ export class AppComponent implements OnInit {
 
   get kmod() {
     let uClass = this.kmodMap.get(this.usageClass);
-    console.log(this.usageClass);
     const totalLoad = this.loads.dead + this.loads.long + this.loads.mid + this.loads.short;
 
     return (this.loads.dead / totalLoad) * uClass[0] +

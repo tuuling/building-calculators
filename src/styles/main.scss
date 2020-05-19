@@ -1,2 +1,7 @@
 @import '../styles/theme/variables';
 @import "~bootstrap-scss/variables";
+.input-group-text .katex { line-height: 1em; }
+
+.c-pointer {
+ cursor: pointer;
+}
