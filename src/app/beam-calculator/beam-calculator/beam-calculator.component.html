@@ -1,0 +1,261 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-xl-6">
+      <h3 class="my-3">Tala tugevusarvutus</h3>
+      <p>
+        I stuffed a shirt or two into my old carpet-bag, tucked it under my arm, and started for Cape Horn and the
+        Pacific. Quitting the good city of old Manhatto, I duly arrived in New Bedford. It was on a Saturday night in
+        December. Much was I disappointed upon learning that the little packet for Nantucket had already sailed, and
+        that no way of reaching that place would offer, till the following Monday.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Tala omadused
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <app-woodgrade [(woodgrade)]="woodgradeKey"></app-woodgrade>
+              <app-cross-section [(breath)]="beam.breath" [(height)]="beam.height"></app-cross-section>
+              <app-length [(length)]="beam.length"></app-length>
+              <app-spacing [(spacing)]="beam.spacing"></app-spacing>
+            </div>
+            <div class="col-6">
+              <app-bending-strength [strength]="woodgrade.bendingStrength"></app-bending-strength>
+              <app-youngs-modulus [modulus]="woodgrade.moduleOfElasticity"></app-youngs-modulus>
+              <hr>
+              <app-elastic-section-modulus [modulus]="elasticSectionModulus"></app-elastic-section-modulus>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Kasutus tingimused
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <app-usageclass [(usageClass)]="usageClass"></app-usageclass>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Koormused
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group">
+                <label for="deadload-input">Alaline koormus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">G =</span></div>
+                  <input [(ngModel)]="loads.dead" type="number" class="form-control" id="deadload-input"
+                         name="deadload"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="partialfactorG-input">Osavarutegur:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">γ<sub>G</sub>=</span></div>
+                  <input value="1.2" disabled="disabled" type="number" class="form-control" id="partialfactorG-input"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="deaload-calc-input">Arvutusväärtus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">G<sub>d</sub>=</span></div>
+                  <input [value]="loads.dead * 1.2" disabled="disabled" class="form-control" id="deaload-calc-input"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group">
+                <label for="liveload-input">Pikajaline koormus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">Q =</span></div>
+                  <input [(ngModel)]="loads.long" type="number" class="form-control" id="liveload-input"
+                         name="liveload"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="partialfactorQ-input">Osavarutegur:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">γ<sub>Q</sub> =</span></div>
+                  <input value="1.5" disabled="disabled" type="number" class="form-control" id="partialfactorQ-input"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="liveload-calc-input">Arvutusväärtus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">Q<sub>d</sub> =</span></div>
+                  <input [value]="loads.long * 1.5" disabled="disabled" class="form-control" id="liveload-calc-input"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group">
+                <label for="liveload-input">Keskkestev koormus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">Q =</span></div>
+                  <input [(ngModel)]="loads.mid" type="number" class="form-control" id="liveload-input"
+                         name="liveload"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="partialfactorQ-input">Osavarutegur:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">γ<sub>Q</sub> =</span></div>
+                  <input value="1.5" disabled="disabled" type="number" class="form-control" id="partialfactorQ-input"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="liveload-calc-input">Arvutusväärtus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">Q<sub>d</sub> =</span></div>
+                  <input [value]="loads.mid * 1.5" disabled="disabled" class="form-control" id="liveload-calc-input"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group">
+                <label for="liveload-input">Lühiajaline koormus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">Q =</span></div>
+                  <input [(ngModel)]="loads.short" type="number" class="form-control" id="liveload-input"
+                         name="liveload"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="partialfactorQ-input">Osavarutegur:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">γ<sub>Q</sub> =</span></div>
+                  <input value="1.5" disabled="disabled" type="number" class="form-control" id="partialfactorQ-input"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="liveload-calc-input">Arvutusväärtus:</label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">Q<sub>d</sub> =</span></div>
+                  <input [value]="loads.short * 1.5" disabled="disabled" class="form-control" id="liveload-calc-input"/>
+                  <div class="input-group-append"><span class="input-group-text">kN/m<sup>2</sup></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <app-total-load [load]="totalLoad"></app-total-load>
+            </div>
+            <div class="col-6">
+              <app-dist-load [load]="distLoad"></app-dist-load>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Sisejõud ja arvutuslik tugevus
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6">
+              <app-kmod [kmod]="kmod"></app-kmod>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <app-bending-moment [moment]="bendingMoment"></app-bending-moment>
+            </div>
+            <div class="col-6">
+              <app-ym [ym]="woodgrade.YM"></app-ym>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <app-bending-tension [tension]="bendingTension"></app-bending-tension>
+            </div>
+            <div class="col-6">
+              <app-bending-strength-calculated [strength]="strengthD"></app-bending-strength-calculated>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="sticky-top">
+        <div class="card my-2">
+          <div class="card-header bg-periwinkle">
+            Kandepiirseisund
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <app-bending-resistance [resistance]="bendingResistance"></app-bending-resistance>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card my-2">
+          <div class="card-body">
+            <app-cross-section-graphic [breath]="beam.breath" [height]="beam.height"></app-cross-section-graphic>
+          </div>
+        </div>
+        <div class="card my-2">
+          <div class="card-body">
+            <app-beams-iso-graphic
+              [height]="beam.height"
+              [breath]="beam.breath"
+              [length]="beam.length"
+              [spacing]="beam.spacing"></app-beams-iso-graphic>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+

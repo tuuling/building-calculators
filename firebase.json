@@ -1,0 +1,22 @@
+{
+  "hosting": [
+    {
+      "target": "building-calculators",
+      "public": "dist/building-calculators/dist/building-calculators/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "function": "ssr"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "source": "dist/building-calculators"
+  }
+}

@@ -1,5 +1,8 @@
-@import '../styles/theme/variables';
-@import "~bootstrap-scss/variables";
+body {
+  background-color: #f8f8f8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .input-group-text .katex { line-height: 1em; }
 
 .c-pointer {

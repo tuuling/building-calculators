@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "building-calculators": {
+      "hosting": {
+        "building-calculators": [
+          "building-calculators"
+        ]
+      }
+    }
+  }
+}

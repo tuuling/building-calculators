@@ -1,0 +1,15 @@
+@import "~bootstrap-scss/functions";
+@import "~bootstrap-scss/variables";
+
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-base: $font-family-sans-serif;
+$body-color: $gray-700;
+
+$theme-colors: (
+  "lavender": #d1b1c8ff,
+  "eggplant": #75485eff,
+  "crayola": #b1b7d1ff,
+  "manatee": #9b9fb5ff,
+  "mountbatten": #8c7284ff,
+  "periwinkle": #b8beddff
+)
