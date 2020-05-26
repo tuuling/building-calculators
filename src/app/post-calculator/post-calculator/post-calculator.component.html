@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-xl-6">
+      <h3 class="my-3">Posti tugevusarvutus</h3>
+      <p>
+        I stuffed a shirt or two into my old carpet-bag, tucked it under my arm, and started for Cape Horn and the
+        Pacific. Quitting the good city of old Manhatto, I duly arrived in New Bedford. It was on a Saturday night in
+        December. Much was I disappointed upon learning that the little packet for Nantucket had already sailed, and
+        that no way of reaching that place would offer, till the following Monday.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Tala omadused
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <app-woodgrade [(woodgrade)]="woodgradeKey"></app-woodgrade>
+              <app-cross-section [(breath)]="beam.breath" [(height)]="beam.height"></app-cross-section>
+              <app-length [(length)]="beam.length"></app-length>
+            </div>
+            <div class="col-6">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Kasutus tingimused
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <app-usageclass [(usageClass)]="usageClass"></app-usageclass>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

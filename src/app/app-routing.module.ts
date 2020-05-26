@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./beam-calculator/beam-calculator.module').then(m => m.BeamCalculatorModule)
   },
   {
+    path: 'post',
+    loadChildren: () => import('./post-calculator/post-calculator.module').then(m => m.PostCalculatorModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'
