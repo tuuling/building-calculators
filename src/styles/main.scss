@@ -8,3 +8,13 @@ body {
 .c-pointer {
  cursor: pointer;
 }
+
+ng-katex {
+  white-space: nowrap;
+}
+
+.popover-body {
+  .katex {
+    font-size: 1.2em;
+  }
+}

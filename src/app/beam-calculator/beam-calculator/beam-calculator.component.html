@@ -25,10 +25,15 @@
               <app-spacing [(spacing)]="beam.spacing"></app-spacing>
             </div>
             <div class="col-6">
-              <app-bending-strength [strength]="woodgrade.bendingStrength"></app-bending-strength>
-              <app-youngs-modulus [modulus]="woodgrade.moduleOfElasticity"></app-youngs-modulus>
+              <app-bending-strength [strength]="woodgrade.f.m"></app-bending-strength>
+              <app-youngs-modulus [E]="woodgrade.E"></app-youngs-modulus>
               <hr>
               <app-elastic-section-modulus [modulus]="elasticSectionModulus"></app-elastic-section-modulus>
+              <hr>
+              <app-effective-length [length]="effectiveLength"></app-effective-length>
+              <app-crit-bending-tension [tension]="critBendingTension"></app-crit-bending-tension>
+              <app-lambda-rel-m [lambda]="relLambdaM"></app-lambda-rel-m>
+              <app-kcrit [kcrit]="kcrit"></app-kcrit>
             </div>
           </div>
         </div>
@@ -205,10 +210,17 @@
           </div>
           <div class="row">
             <div class="col-6">
+            </div>
+            <div class="col-6">
+              <app-kh [kh]="kh"></app-kh>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
               <app-bending-moment [moment]="bendingMoment"></app-bending-moment>
             </div>
             <div class="col-6">
-              <app-ym [ym]="woodgrade.YM"></app-ym>
+              <app-ym [ym]="YM"></app-ym>
             </div>
           </div>
           <div class="row">
@@ -232,6 +244,12 @@
             <div class="row">
               <div class="col-12">
                 <app-bending-resistance [resistance]="bendingResistance"></app-bending-resistance>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <app-bending-resistance-kcrit [resistance]="bendingResistanceWKcrit"></app-bending-resistance-kcrit>
+
               </div>
             </div>
           </div>

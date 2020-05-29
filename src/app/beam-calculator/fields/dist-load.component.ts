@@ -13,7 +13,7 @@ import { Component, Input } from '@angular/core';
       </div>
     </div>
     <ng-template #helpText>
-      <ng-katex [equation]="'q = K × S'"></ng-katex>
+      <ng-katex [equation]="'q = K⋅S'"></ng-katex>
     </ng-template>
 
   `

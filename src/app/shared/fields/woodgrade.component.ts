@@ -27,7 +27,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
           <option [ngValue]="'gl28h'">GL28h</option>
           <option [ngValue]="'gl30h'">GL30h</option>
           <option [ngValue]="'gl32h'">GL32h</option>
-          <option [ngValue]="'gl36h'">GL36h</option>
 
           <option [ngValue]="'gl20c'">GL20c</option>
           <option [ngValue]="'gl22c'">GL22c</option>
@@ -35,7 +34,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
           <option [ngValue]="'gl28c'">GL28c</option>
           <option [ngValue]="'gl30c'">GL30c</option>
           <option [ngValue]="'gl32c'">GL32c</option>
-          <option [ngValue]="'gl36c'">GL36c</option>
         </optgroup>
 
       </select>

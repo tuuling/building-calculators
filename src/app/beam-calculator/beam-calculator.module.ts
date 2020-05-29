@@ -16,6 +16,12 @@ import { BendingResistanceComponent } from './fields/bending-resistance.componen
 import { BeamsIsoGraphicComponent } from './graphics/beams-iso-graphic.component';
 import { DistLoadComponent } from './fields/dist-load.component';
 import { TotalLoadComponent } from './fields/total-load.component';
+import { KhComponent } from './fields/kh.component';
+import { EffectiveLengthComponent } from './fields/effective-length.component';
+import { CritBendingTensionComponent } from './fields/crit-bending-tension.component';
+import { LambdaRelMComponent } from './fields/lambda-rel-m.component';
+import { KcritComponent } from './fields/kcrit.component';
+import { BendingResistanceKcritComponent } from './fields/bending-resistance-kcrit.component';
 
 
 @NgModule({
@@ -33,7 +39,13 @@ import { TotalLoadComponent } from './fields/total-load.component';
     DistLoadComponent,
     TotalLoadComponent,
     BendingResistanceComponent,
-    BeamsIsoGraphicComponent
+    BeamsIsoGraphicComponent,
+    KhComponent,
+    EffectiveLengthComponent,
+    CritBendingTensionComponent,
+    LambdaRelMComponent,
+    KcritComponent,
+    BendingResistanceKcritComponent
   ],
   imports: [
     SharedModule,

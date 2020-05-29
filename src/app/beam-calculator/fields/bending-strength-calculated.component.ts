@@ -18,7 +18,7 @@ import { Component, Input } from '@angular/core';
       </div>
     </div>
     <ng-template #helpText>
-      <ng-katex [equation]="'f_{m,d} = \\\\dfrac{f_{m,k}×K_{mod}}{\\\\Upsilon_M}'"></ng-katex>
+      <ng-katex [equation]="'f_{m,d} = \\\\dfrac{f_{m,k}⋅k_{h}⋅K_{mod}}{\\\\Upsilon_M}'"></ng-katex>
     </ng-template>
 
   `

@@ -22,7 +22,7 @@ export class BeamCalculatorComponent {
     dead: 0.7, //G
     long: 0.2, //Q1
     mid: 0.3, //Q2
-    short: 0.1, //Q3
+    short: 0.1 //Q3
   }
 
   usageClass: number = 1;
@@ -60,8 +60,32 @@ export class BeamCalculatorComponent {
     return this.bendingMoment / this.elasticSectionModulus;
   }
 
+  get effectiveLength() {
+    return this.beam.length * 0.95;
+  }
+
+  get critBendingTension() {
+    return (Math.pow(this.beam.breath * 0.78, 2)
+      / (this.beam.height * this.effectiveLength)
+    ) * this.woodgrade.E.fivePerc;
+  }
+
+  get relLambdaM() {
+    return Math.sqrt(this.woodgrade.f.m / this.critBendingTension);
+  }
+
   get strengthD() {
-    return (this.woodgrade.bendingStrength * this.kmod) / this.woodgrade.YM;
+    return (this.woodgrade.f.m * this.kmod * this.kh) / this.YM;
+  }
+
+  get kcrit() {
+    if (this.relLambdaM <= 0.75) {
+        return 1;
+    } else if (this.relLambdaM > 0.75 && this.relLambdaM <= 1.4) {
+      return 1.56 - 0.75 * this.relLambdaM;
+    } else {
+      return 1 / Math.pow(this.relLambdaM, 2);
+    }
   }
 
   get kmod() {
@@ -75,8 +99,31 @@ export class BeamCalculatorComponent {
 
   }
 
+  get kh() {
+    if (this.woodgrade.type === 'sawn' && this.beam.height < 150) {
+      return Math.min(Math.pow(150 / this.beam.height, 0.2), 1.3);
+    } else if (this.woodgrade.type === 'gluelam' && this.beam.height < 600) {
+      return Math.min(Math.pow(600 / this.beam.height, 0.1), 1.1);
+    } else {
+      return 1;
+    }
+  }
+
+  get YM() {
+    const types = {
+      'sawn': 1.3,
+      'gluelam': 1.25
+    }
+
+    return types[this.woodgrade.type];
+  }
+
   get bendingResistance() {
-    return this.bendingTension/this.strengthD;
+    return this.bendingTension / this.strengthD;
+  }
+
+  get bendingResistanceWKcrit() {
+    return this.bendingTension / (this.strengthD * this.kcrit);
   }
 
 }
