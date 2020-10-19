@@ -1,13 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-xl-6">
-      <h3 class="my-3">Tala tugevusarvutus</h3>
-      <p>
-        I stuffed a shirt or two into my old carpet-bag, tucked it under my arm, and started for Cape Horn and the
-        Pacific. Quitting the good city of old Manhatto, I duly arrived in New Bedford. It was on a Saturday night in
-        December. Much was I disappointed upon learning that the little packet for Nantucket had already sailed, and
-        that no way of reaching that place would offer, till the following Monday.
-      </p>
+      <h3 class="my-3">Puidust tala tugevusarvutus</h3>
+      <p></p>
     </div>
   </div>
   <div class="row">
@@ -20,8 +15,8 @@
           <div class="row">
             <div class="col-6">
               <app-woodgrade [(woodgrade)]="woodgradeKey"></app-woodgrade>
-              <app-cross-section [(breath)]="beam.breath" [(height)]="beam.height"></app-cross-section>
-              <app-length [(length)]="beam.length"></app-length>
+              <app-cross-section label="Tala ristlõige:" [(breath)]="beam.breath" [(height)]="beam.height"></app-cross-section>
+              <app-length label="Tala pikkus:" [(length)]="beam.length"></app-length>
               <app-spacing [(spacing)]="beam.spacing"></app-spacing>
             </div>
             <div class="col-6">
@@ -29,10 +24,16 @@
               <app-youngs-modulus [E]="woodgrade.E"></app-youngs-modulus>
               <hr>
               <app-elastic-section-modulus [modulus]="elasticSectionModulus"></app-elastic-section-modulus>
-              <hr>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-6">
               <app-effective-length [length]="effectiveLength"></app-effective-length>
-              <app-crit-bending-tension [tension]="critBendingTension"></app-crit-bending-tension>
               <app-lambda-rel-m [lambda]="relLambdaM"></app-lambda-rel-m>
+            </div>
+            <div class="col-6">
+              <app-crit-bending-tension [tension]="critBendingTension"></app-crit-bending-tension>
               <app-kcrit [kcrit]="kcrit"></app-kcrit>
             </div>
           </div>

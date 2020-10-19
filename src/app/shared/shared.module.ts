@@ -8,6 +8,9 @@ import { CrossSectionComponent } from './fields/cross-section.component';
 import { LengthComponent } from './fields/length.component';
 import { WoodgradeComponent } from './fields/woodgrade.component';
 import { UsageclassComponent } from './fields/usageclass.component';
+import { YoungsModulusComponent } from './fields/youngs-modulus.component';
+import { KmodComponent } from './fields/kmod.component';
+import { YmComponent } from './fields/ym.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { UsageclassComponent } from './fields/usageclass.component';
     CrossSectionComponent,
     LengthComponent,
     WoodgradeComponent,
-    UsageclassComponent
+    UsageclassComponent,
+    YoungsModulusComponent,
+    KmodComponent,
+    YmComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +39,9 @@ import { UsageclassComponent } from './fields/usageclass.component';
     LengthComponent,
     WoodgradeComponent,
     UsageclassComponent,
+    YoungsModulusComponent,
+    KmodComponent,
+    YmComponent
   ]
 })
 export class SharedModule { }

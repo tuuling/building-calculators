@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-cross-section-graphic',
   template: `
-    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" width="300px" height="300px">
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="400px" height="300px">
       <g transform="translate(50 50)">
         <rect x="0" y="0" [attr.width]="beamScale.breath" [attr.height]="beamScale.height"
               style="fill:#f1d99e;stroke:#b3b3b3;stroke-width:2;"/>

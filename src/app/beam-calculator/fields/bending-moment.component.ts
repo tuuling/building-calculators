@@ -15,7 +15,7 @@ import { Component, Input } from '@angular/core';
       </div>
     </div>
     <ng-template #helpText>
-      <ng-katex [equation]="'M = \\\\dfrac{q⋅L^2}{8}'"></ng-katex>
+      <ng-katex [equation]="'M = \\\\dfrac{q⋅l^2}{8}'"></ng-katex>
     </ng-template>
   `
 })
