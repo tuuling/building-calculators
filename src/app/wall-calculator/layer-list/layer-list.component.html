@@ -1,0 +1,42 @@
+<div class="card my-2">
+  <div class="card-header bg-periwinkle">
+    Seina kihid
+  </div>
+  <div class="card-body">
+    <div cdkDropList (cdkDropListDropped)="drop($event)">
+      <div cdkDrag *ngFor="let layer of layers">
+        <div class="card my-2" >
+
+          <div class="card-header py-1 px-2 bg-lavender">
+            <svg class="bi float-right text-black-50 move-handle" cdkDragHandle
+                 width="24" height="24"
+                 fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#grip-vertical"/>
+            </svg>
+            {{layer.name}}
+          </div>
+          <div class="card-body py-1 px-2">
+
+            <div class="row">
+              <div class="col">
+                <ng-katex [equation]="'d= '+layer.thickness+'~ \\small{mm}'"></ng-katex>
+              </div>
+              <div class="col">
+                <ng-katex [equation]="'\\lambda_{design}= '+layer.lambda+'~ \\small{(W\\!/mK)}'"></ng-katex>
+              </div>
+              <div class="col">
+                <ng-katex [equation]="'R= '+getRvalue(layer)+'~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button (click)="addLayer()" type="button" class="btn btn-primary btn-sm btn-block">Lisa kiht</button>
+      </div>
+    </div>
+
+  </div>
+</div>

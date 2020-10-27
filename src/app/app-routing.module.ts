@@ -14,6 +14,10 @@ const routes: Routes = [
     loadChildren: () => import('./post-calculator/post-calculator.module').then(m => m.PostCalculatorModule)
   },
   {
+    path: 'wall',
+    loadChildren: () => import('./wall-calculator/wall-calculator.module').then(m => m.WallCalculatorModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'
