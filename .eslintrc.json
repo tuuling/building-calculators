@@ -35,6 +35,7 @@
   ],
   "rules": {
     "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/consistent-type-definitions": "error",
     "@typescript-eslint/explicit-member-accessibility": [
       "off",
@@ -68,7 +69,7 @@
         }
       }
     ],
-    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "error",
@@ -177,7 +178,7 @@
     "no-throw-literal": "error",
     "no-trailing-spaces": "error",
     "no-undef-init": "error",
-    "no-underscore-dangle": "error",
+    "no-underscore-dangle": "off",
     "no-unsafe-finally": "error",
     "no-unused-expressions": "error",
     "no-unused-labels": "error",

@@ -9,12 +9,10 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <layer-list [layers]="layers"></layer-list>
+      <layer-list [(layers)]="layers"></layer-list>
     </div>
     <div class="col-md-6">
-      <span *ngFor="let layer of layers">
-        {{ layer.name }}
-      </span>
+      <cross-section [layers]="layers"></cross-section>
     </div>
   </div>
 </div>

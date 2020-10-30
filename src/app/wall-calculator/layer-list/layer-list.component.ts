@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WallLayer } from '../../types/WallLayer';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { List } from 'immutable';
 
 @Component({
   selector: 'layer-list',
@@ -8,7 +9,8 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   styleUrls: ['./layer-list.component.scss']
 })
 export class LayerListComponent implements OnInit {
-  @Input() layers: WallLayer[];
+  @Input() layers: List<WallLayer>;
+  @Output() layersChange = new EventEmitter<List<WallLayer>>();
 
   constructor() { }
 
@@ -16,18 +18,21 @@ export class LayerListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    this.array_move(this.layers, event.previousIndex, event.currentIndex);
+    this.layers = this.arraymove(this.layers, event.previousIndex, event.currentIndex);
+    this.layersChange.emit(this.layers);
   }
 
-  private array_move(arr, old_index, new_index) {
-    if (new_index >= arr.length) {
-      return false;
+  private arraymove<T>(arr: List<T>, oldindex, newindex): List<T> {
+    if (newindex >= arr.size) {
+      return arr;
     }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-  };
+    const value = arr.get(oldindex);
+    return arr.delete(oldindex).insert(newindex, value);
+  }
 
   addLayer(): void {
-    this.layers.push({name: '', thickness: 0, lambda: null})
+    this.layers = this.layers.push({name: '', thickness: 0, lambda: null});
+    this.layersChange.emit(this.layers);
   }
 
   getRvalue(layer: WallLayer) {
