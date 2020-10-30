@@ -1,11 +1,10 @@
-<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="400px" height="300px">
-  <g transform="translate(50 50)">
+<svg [attr.viewBox]="viewBox" xmlns="http://www.w3.org/2000/svg" [attr.width]="dim.width + 'px'" [attr.height]="dim.height + 'px'">
+  <g [attr.transform]="'translate' | xy:margin.right:margin.top">
     <rect *ngFor="let layer of layers; trackBy: trackingFunction"
           class="layer"
-          height="200"
+          [attr.height]="height"
           [attr.width]="layer.thickness / 5"
-          [attr.transform]="'translate('+ layer.depth / 5 +' '+0+')'">
-
+          [attr.transform]="'translate' | xy:(layer.depth / 5):0">
     </rect>
   </g>
 </svg>

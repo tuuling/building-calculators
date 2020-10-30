@@ -1,12 +1,26 @@
 <div class="card my-2">
   <div class="card-header bg-periwinkle">
-    Seina kihid
+    kihid
   </div>
   <div class="card-body">
+    <div class="card my2">
+      <div class="card-header py-1 px-2 ">
+        Siseõhk
+      </div>
+      <div class="card-body py-1 px-2">
+        <div class="row">
+          <div class="col">
+            <ng-katex [equation]="'t= +20 ~ \\small{\\degree C}'"></ng-katex>
+          </div>
+          <div class="col"></div>
+          <div class="col"><ng-katex [equation]="'R= 0.13~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex></div>
+        </div>
+      </div>
+    </div>
+
     <div cdkDropList (cdkDropListDropped)="drop($event)">
       <div cdkDrag *ngFor="let layer of layers">
         <div class="card my-2" >
-
           <div class="card-header py-1 px-2 bg-lavender">
             <svg class="bi float-right text-black-50 move-handle" cdkDragHandle
                  width="24" height="24"
@@ -16,7 +30,6 @@
             {{layer.name}}
           </div>
           <div class="card-body py-1 px-2">
-
             <div class="row">
               <div class="col">
                 <ng-katex [equation]="'d= '+layer.thickness+'~ \\small{mm}'"></ng-katex>
@@ -32,11 +45,25 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row my-2">
       <div class="col">
-        <button (click)="addLayer()" type="button" class="btn btn-primary btn-sm btn-block">Lisa kiht</button>
+        <button (click)="addLayer()" type="button" class="btn btn-outline-primary btn-sm btn-block">Lisa kiht</button>
       </div>
     </div>
 
+    <div class="card my2">
+      <div class="card-header py-1 px-2 ">
+        Välisõhk
+      </div>
+      <div class="card-body py-1 px-2">
+        <div class="row">
+          <div class="col">
+            <ng-katex [equation]="'t= -15 ~ \\small{\\degree C}'"></ng-katex>
+          </div>
+          <div class="col"></div>
+          <div class="col"><ng-katex [equation]="'R= 0.04~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

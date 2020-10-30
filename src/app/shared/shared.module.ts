@@ -11,6 +11,7 @@ import { UsageclassComponent } from './fields/usageclass.component';
 import { YoungsModulusComponent } from './fields/youngs-modulus.component';
 import { KmodComponent } from './fields/kmod.component';
 import { YmComponent } from './fields/ym.component';
+import { XyPipe } from './xy.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { YmComponent } from './fields/ym.component';
     UsageclassComponent,
     YoungsModulusComponent,
     KmodComponent,
-    YmComponent
+    YmComponent,
+    XyPipe
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,9 @@ import { YmComponent } from './fields/ym.component';
     UsageclassComponent,
     YoungsModulusComponent,
     KmodComponent,
-    YmComponent
+    YmComponent,
+    XyPipe
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
