@@ -2,20 +2,19 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WallLayer } from '../../types/WallLayer';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { List } from 'immutable';
+import { Surface } from '../../types/Surface';
 
 @Component({
   selector: 'layer-list',
   templateUrl: './layer-list.component.html',
   styleUrls: ['./layer-list.component.scss']
 })
-export class LayerListComponent implements OnInit {
+export class LayerListComponent {
   @Input() layers: List<WallLayer>;
   @Output() layersChange = new EventEmitter<List<WallLayer>>();
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Input() surfaces: Surface[];
+  @Input() temps: { external; internal };
 
   drop(event: CdkDragDrop<string[]>) {
     this.layers = this.arraymove(this.layers, event.previousIndex, event.currentIndex);
@@ -31,11 +30,12 @@ export class LayerListComponent implements OnInit {
   }
 
   addLayer(): void {
-    this.layers = this.layers.push({name: '', thickness: 0, lambda: null});
+    this.layers = this.layers.push( new WallLayer({name: '', thickness: 0, lambda: null}));
     this.layersChange.emit(this.layers);
   }
 
   getRvalue(layer: WallLayer) {
-    return Math.round(layer.thickness / 1000 * layer.lambda * 100) / 100;
+    const R = layer.thickness / 1000 / layer.lambda;
+    return Math.round(R * 1000) / 1000;
   }
 }

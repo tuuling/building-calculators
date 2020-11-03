@@ -3,3 +3,16 @@ rect.layer {
   fill: none;
   stroke-width: 1;
 }
+
+path.temp-path {
+  fill:none;
+  stroke: black;
+  stroke-width: 2;
+}
+
+text.temp-label {
+  font-size: 13px;
+  text-anchor: middle;
+  font-family: monospace;
+  fill: red;
+}

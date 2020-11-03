@@ -9,10 +9,10 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <layer-list [(layers)]="layers"></layer-list>
+      <layer-list [(layers)]="layers" [surfaces]="surfaces" [temps]="temp"></layer-list>
     </div>
     <div class="col-md-6">
-      <cross-section [layers]="layers"></cross-section>
+      <cross-section [layers]="layers" [surfaces]="surfaces" [temps]="temp"></cross-section>
     </div>
   </div>
 </div>

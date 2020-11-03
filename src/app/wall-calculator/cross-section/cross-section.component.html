@@ -1,10 +1,19 @@
 <svg [attr.viewBox]="viewBox" xmlns="http://www.w3.org/2000/svg" [attr.width]="dim.width + 'px'" [attr.height]="dim.height + 'px'">
-  <g [attr.transform]="'translate' | xy:margin.right:margin.top">
-    <rect *ngFor="let layer of layers; trackBy: trackingFunction"
+  <g>
+    <rect *ngFor="let layer of layers; let i = index; trackBy: trackingFunction"
           class="layer"
           [attr.height]="height"
-          [attr.width]="layer.thickness / 5"
-          [attr.transform]="'translate' | xy:(layer.depth / 5):0">
+          [attr.width]="layer.thickness * scale"
+          [attr.transform]="'translate' | xy:(scaleDepth(surfaces[i].depth)):margin.top">
     </rect>
   </g>
+
+  <path class="temp-path" [attr.d]="tempsPath"></path>
+
+  <g *ngIf="pointer">
+    <text class="temp-label" [attr.x]="pointer.x" [attr.y]="pointer.y - 8">{{pointer.label}}°C</text>
+    <circle [attr.cx]="pointer.x" [attr.cy]="pointer.y" r="5" fill="black" />
+  </g>
+
+  <g #tempAxis></g>
 </svg>

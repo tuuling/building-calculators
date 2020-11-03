@@ -3,23 +3,32 @@
     kihid
   </div>
   <div class="card-body">
-    <div class="card my2">
+    <div class="card my-2">
+      <div class="card-body py-1 px-2">
+        <div class="row">
+          <div class="col"><ng-katex [equation]="'d,~\\small{mm}'"></ng-katex></div>
+          <div class="col"><ng-katex [equation]="'\\lambda_{design},~ \\small{(W\\!/mK)}'"></ng-katex></div>
+          <div class="col"><ng-katex [equation]="'R,~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex></div>
+          <div class="col"><ng-katex [equation]="'t,~ \\small{\\degree C}'"></ng-katex></div>
+        </div>
+      </div>
+    </div>
+    <div class="card my-2">
       <div class="card-header py-1 px-2 ">
         Siseõhk
       </div>
       <div class="card-body py-1 px-2">
         <div class="row">
-          <div class="col">
-            <ng-katex [equation]="'t= +20 ~ \\small{\\degree C}'"></ng-katex>
-          </div>
           <div class="col"></div>
-          <div class="col"><ng-katex [equation]="'R= 0.13~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex></div>
+          <div class="col"></div>
+          <div class="col"><ng-katex [equation]="'0.13'"></ng-katex></div>
+          <div class="col"><ng-katex [equation]="'\\text{'+ temps.internal.toFixed() + '}'"></ng-katex></div>
         </div>
       </div>
     </div>
 
     <div cdkDropList (cdkDropListDropped)="drop($event)">
-      <div cdkDrag *ngFor="let layer of layers">
+      <div cdkDrag *ngFor="let layer of layers; let i = index;">
         <div class="card my-2" >
           <div class="card-header py-1 px-2 bg-lavender">
             <svg class="bi float-right text-black-50 move-handle" cdkDragHandle
@@ -31,14 +40,11 @@
           </div>
           <div class="card-body py-1 px-2">
             <div class="row">
+              <div class="col"><ng-katex [equation]="layer.thickness.toString()"></ng-katex></div>
+              <div class="col"><ng-katex [equation]="layer.lambda.toString()"></ng-katex></div>
+              <div class="col"><ng-katex [equation]="getRvalue(layer).toString()"></ng-katex></div>
               <div class="col">
-                <ng-katex [equation]="'d= '+layer.thickness+'~ \\small{mm}'"></ng-katex>
-              </div>
-              <div class="col">
-                <ng-katex [equation]="'\\lambda_{design}= '+layer.lambda+'~ \\small{(W\\!/mK)}'"></ng-katex>
-              </div>
-              <div class="col">
-                <ng-katex [equation]="'R= '+getRvalue(layer)+'~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex>
+                <ng-katex [equation]="'\\text{' + surfaces[i].temp.toFixed(1) +'}/\\text{'+ surfaces[i+1].temp.toFixed(1)+'}'"></ng-katex>
               </div>
             </div>
           </div>
@@ -57,11 +63,10 @@
       </div>
       <div class="card-body py-1 px-2">
         <div class="row">
-          <div class="col">
-            <ng-katex [equation]="'t= -15 ~ \\small{\\degree C}'"></ng-katex>
-          </div>
           <div class="col"></div>
-          <div class="col"><ng-katex [equation]="'R= 0.04~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex></div>
+          <div class="col"></div>
+          <div class="col"><ng-katex [equation]="'0.04'"></ng-katex></div>
+          <div class="col"><ng-katex [equation]="'\\text{'+ temps.external.toFixed() + '}'"></ng-katex></div>
         </div>
       </div>
     </div>
