@@ -6,10 +6,18 @@
     <div class="card my-2">
       <div class="card-body py-1 px-2">
         <div class="row">
-          <div class="col"><ng-katex [equation]="'d,~\\small{mm}'"></ng-katex></div>
-          <div class="col"><ng-katex [equation]="'\\lambda_{design},~ \\small{(W\\!/mK)}'"></ng-katex></div>
-          <div class="col"><ng-katex [equation]="'R,~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex></div>
-          <div class="col"><ng-katex [equation]="'t,~ \\small{\\degree C}'"></ng-katex></div>
+          <div class="col">
+            <ng-katex [equation]="'d,~\\small{mm}'"></ng-katex>
+          </div>
+          <div class="col">
+            <ng-katex [equation]="'\\lambda_{design},~ \\small{(W\\!/mK)}'"></ng-katex>
+          </div>
+          <div class="col">
+            <ng-katex [equation]="'R,~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex>
+          </div>
+          <div class="col">
+            <ng-katex [equation]="'t,~ \\small{\\degree C}'"></ng-katex>
+          </div>
         </div>
       </div>
     </div>
@@ -27,30 +35,20 @@
       </div>
     </div>
 
-    <div cdkDropList (cdkDropListDropped)="drop($event)">
-      <div cdkDrag *ngFor="let layer of layers; let i = index;">
-        <div class="card my-2" >
-          <div class="card-header py-1 px-2 bg-lavender">
-            <svg class="bi float-right text-black-50 move-handle" cdkDragHandle
-                 width="24" height="24"
-                 fill="currentColor">
-              <use xlink:href="bootstrap-icons.svg#grip-vertical"/>
-            </svg>
-            {{layer.name}}
-          </div>
-          <div class="card-body py-1 px-2">
-            <div class="row">
-              <div class="col"><ng-katex [equation]="layer.thickness.toString()"></ng-katex></div>
-              <div class="col"><ng-katex [equation]="layer.lambda.toString()"></ng-katex></div>
-              <div class="col"><ng-katex [equation]="getRvalue(layer).toString()"></ng-katex></div>
-              <div class="col">
-                <ng-katex [equation]="'\\text{' + surfaces[i].temp.toFixed(1) +'}/\\text{'+ surfaces[i+1].temp.toFixed(1)+'}'"></ng-katex>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div (cdkDropListDropped)="drop($event)" cdkDropList>
+      <layer *ngFor="let layer of layers; let i = index;"
+             [layer]="layer"
+             (layerChange)="onLayerChange()"
+             [temp]="[surfaces[i].temp, surfaces[i+1].temp]" cdkDrag>
+        <svg class="bi text-black-50" cdkDragHandle
+             width="22" height="22"
+             fill="currentColor">
+          <use xlink:href="bootstrap-icons.svg#grip-vertical"/>
+        </svg>
+      </layer>
+
     </div>
+
     <div class="row my-2">
       <div class="col">
         <button (click)="addLayer()" type="button" class="btn btn-outline-primary btn-sm btn-block">Lisa kiht</button>
@@ -65,8 +63,12 @@
         <div class="row">
           <div class="col"></div>
           <div class="col"></div>
-          <div class="col"><ng-katex [equation]="'0.04'"></ng-katex></div>
-          <div class="col"><ng-katex [equation]="'\\text{'+ temps.external.toFixed() + '}'"></ng-katex></div>
+          <div class="col">
+            <ng-katex [equation]="'0.04'"></ng-katex>
+          </div>
+          <div class="col">
+            <ng-katex [equation]="'\\text{'+ temps.external.toFixed() + '}'"></ng-katex>
+          </div>
         </div>
       </div>
     </div>

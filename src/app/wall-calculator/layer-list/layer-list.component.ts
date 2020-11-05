@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { WallLayer } from '../../types/WallLayer';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { List } from 'immutable';
@@ -30,12 +30,13 @@ export class LayerListComponent {
   }
 
   addLayer(): void {
-    this.layers = this.layers.push( new WallLayer({name: '', thickness: 0, lambda: null}));
+    this.layers = this.layers.push(new WallLayer({ name: '', thickness: 1, lambda: 1 }));
     this.layersChange.emit(this.layers);
   }
 
-  getRvalue(layer: WallLayer) {
-    const R = layer.thickness / 1000 / layer.lambda;
-    return Math.round(R * 1000) / 1000;
+  // clone so that everyone knows it was changed
+  onLayerChange() {
+    this.layers = List([...this.layers]);
+    this.layersChange.emit(this.layers);
   }
 }

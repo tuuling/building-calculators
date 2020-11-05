@@ -1,0 +1,89 @@
+<div class="card my-2">
+  <div class="card-header py-1 px-2 bg-lavender">
+    <div class="row">
+      <div class="col">
+        <ng-container *ngIf="!edit">
+          {{layer.name}}
+        </ng-container>
+        <input *ngIf="edit" [(ngModel)]="layer.name" (ngModelChange)="layerChange.emit(layer)"
+               type="text"
+               class="form-control form-control-sm">
+      </div>
+      <div class="col">
+        <div class="actions text-right">
+
+          <svg class="bi text-black-50 mr-3"
+               (click)="edit = !edit;"
+               width="22" height="22"
+               fill="currentColor">
+            <use xlink:href="bootstrap-icons.svg#pencil"/>
+          </svg>
+          <ng-content></ng-content>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+  <div class="card-body py-1 px-2">
+    <div class="row" *ngIf="!edit">
+      <div class="col">
+        <ng-katex [equation]="layer.thickness.toString()"></ng-katex>
+      </div>
+      <div class="col">
+        <ng-katex [equation]="layer.lambda.toString()"></ng-katex>
+      </div>
+      <div class="col">
+        <ng-katex [equation]="layer.Rvalue.toString()"></ng-katex>
+      </div>
+      <div class="col">
+        <ng-katex
+          [equation]="'\\text{' + temp[0].toFixed(1) +'}/\\text{'+ temp[1].toFixed(1)+'}'"></ng-katex>
+      </div>
+    </div>
+    <form *ngIf="edit">
+      <div class="form-row">
+        <div class="form-group col-md-6 col-lg-3">
+          <label for="inputThickness">Paksus</label>
+          <input [(ngModel)]="layer.thickness" (ngModelChange)="layerChange.emit(layer)"
+                 type="number" step="1"
+                 class="form-control form-control-sm" id="inputThickness" name="thickness">
+          <small class="form-text text-muted">
+            <ng-katex [equation]="'d,~\\small{mm}'"></ng-katex>
+          </small>
+        </div>
+        <div class="form-group col-md-6 col-lg-3">
+          <label for="inputLambda">Soojuserijuhtivus</label>
+          <input [(ngModel)]="layer.lambda" (ngModelChange)="layerChange.emit(layer)"
+                 type="number" step="0.01"
+                 class="form-control form-control-sm" id="inputLambda" name="lambda">
+          <small class="form-text text-muted">
+            <ng-katex [equation]="'\\lambda_{design},~ \\small{(W\\!/mK)}'"></ng-katex>
+          </small>
+        </div>
+        <div class="form-group col-md-6 col-lg-3">
+          <label for="inputRvalue">Soojustakistus</label>
+          <input [ngModel]="layer.Rvalue"
+                 type="number" disabled
+                 class="form-control form-control-sm" id="inputRvalue" name="Rvalue">
+          <small class="form-text text-muted">
+            <ng-katex [equation]="'R,~ \\small{(m^2·\\!K\\!/W)}'"></ng-katex>
+          </small>
+        </div>
+        <div class="form-group col-md-6 col-lg-3">
+          <label for="inputTemps">Pinnatemperatuurid</label>
+          <input [value]="temp[0].toFixed(1) +'/'+ temp[1].toFixed(1)"
+                 type="text" disabled
+                 class="form-control form-control-sm" id="inputTemps" name="temps">
+          <small class="form-text text-muted">
+            <ng-katex [equation]="'\\text{sise/välis}~ t,~ \\small{\\degree C}'"></ng-katex>
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <button (click)="edit = false;" type="button" class="btn btn-sm btn-primary">Valmis</button>
+      </div>
+    </form>
+  </div>
+</div>

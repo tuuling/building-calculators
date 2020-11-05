@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { WallLayer } from '../../types/WallLayer';
-import { List } from 'immutable';
+
 import memoizeOne from 'memoize-one';
+import { List } from 'immutable';
 import { sum as d3sum } from 'd3-array';
+
+import { WallLayer } from '../../types/WallLayer';
 import { Surface } from '../../types/Surface';
+
 
 @Component({
   selector: 'app-wall-calculator',
@@ -11,7 +14,7 @@ import { Surface } from '../../types/Surface';
   styleUrls: ['./wall-calculator.component.scss']
 })
 export class WallCalculatorComponent {
-
+  
   layers = List<WallLayer>([
     new WallLayer({ name: 'Kergbetoon', thickness: 150, lambda: 0.24 }),
     new WallLayer({ name: 'Polüuretaan', thickness: 80, lambda: 0.03 }),
@@ -26,7 +29,6 @@ export class WallCalculatorComponent {
     const surfaces: Surface[] = [];
     let depth = girth;
     let depthR = 0.13;
-
 
     surfaces.push({ depth, temp: this.getSurfaceTemp(temp, depthR, totalR) });
 

@@ -5,11 +5,12 @@ import { WallCalculatorComponent } from './wall-calculator/wall-calculator.compo
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LayerListComponent } from './layer-list/layer-list.component';
 import { CrossSectionComponent } from './cross-section/cross-section.component';
+import { LayerComponent } from './layer-list/layer/layer.component';
 
 
 
 @NgModule({
-  declarations: [WallCalculatorComponent, LayerListComponent, CrossSectionComponent],
+  declarations: [WallCalculatorComponent, LayerListComponent, CrossSectionComponent, LayerComponent],
   imports: [
     DragDropModule,
     SharedModule,

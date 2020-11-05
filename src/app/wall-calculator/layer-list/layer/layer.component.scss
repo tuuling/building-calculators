@@ -1,0 +1,13 @@
+.card {
+  .actions {
+    line-height: 22px;
+    display: none;
+    .bi {
+      cursor: pointer;
+    }
+  }
+  &:hover .actions {
+    display: block;
+  }
+
+}

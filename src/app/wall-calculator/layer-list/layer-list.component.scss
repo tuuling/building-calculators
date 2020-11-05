@@ -1,12 +1,5 @@
-.card {
-  .move-handle {
-    display: none;
-    cursor: pointer;
-  }
-  &:hover .move-handle {
-    display: block;
-  }
-
+[cdkDragHandle] {
+  cursor: pointer;
 }
 
 .cdk-drag-preview {
