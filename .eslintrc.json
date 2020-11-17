@@ -88,7 +88,7 @@
       "always"
     ],
     "@typescript-eslint/unified-signatures": "error",
-    "arrow-body-style": "error",
+    "arrow-body-style": "warn",
     "arrow-parens": [
       "off",
       "as-needed"
