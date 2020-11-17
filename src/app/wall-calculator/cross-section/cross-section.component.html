@@ -1,7 +1,18 @@
 <svg [attr.viewBox]="viewBox" xmlns="http://www.w3.org/2000/svg" [attr.width]="dim.width + 'px'" [attr.height]="dim.height + 'px'">
+  <defs>
+    <ng-container *ngFor="let layer of layers">
+      <pattern *ngIf="layer.hatch"
+               [hatch]="layer.hatch"
+               [width]="layer.thickness * scale"
+               [height]="height"
+               [id]="layer.UUID"></pattern>
+    </ng-container>
+  </defs>
+
   <g>
     <rect *ngFor="let layer of layers; let i = index; trackBy: trackingFunction"
           class="layer"
+          [attr.fill]="layer.hatch ? 'url(#pattern-'+layer.UUID+')' : 'none'"
           [attr.height]="height"
           [attr.width]="layer.thickness * scale"
           [attr.transform]="'translate' | xy:(scaleDepth(surfaces[i].depth)):margin.top">

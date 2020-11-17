@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import memoizeOne from 'memoize-one';
+import { v4 } from 'uuid';
 import { List } from 'immutable';
 import { sum as d3sum } from 'd3-array';
 
@@ -14,11 +15,11 @@ import { Surface } from '../../types/Surface';
   styleUrls: ['./wall-calculator.component.scss']
 })
 export class WallCalculatorComponent {
-  
+
   layers = List<WallLayer>([
-    new WallLayer({ name: 'Kergbetoon', thickness: 150, lambda: 0.24 }),
-    new WallLayer({ name: 'Polüuretaan', thickness: 80, lambda: 0.03 }),
-    new WallLayer({ name: 'Kergbetoon', thickness: 100, lambda: 0.24 })
+    new WallLayer({ name: 'Kergbetoon', thickness: 150, lambda: 0.24, UUID: v4(), hatch: 'battinsul' }),
+    new WallLayer({ name: 'Polüuretaan', thickness: 80, lambda: 0.03, UUID: v4(), hatch: 'rigidinsul' }),
+    new WallLayer({ name: 'Kergbetoon', thickness: 100, lambda: 0.24, UUID: v4() })
   ]);
 
   temp = { external: -15, internal: 20 };
@@ -49,6 +50,14 @@ export class WallCalculatorComponent {
   getSurfaceTemp(temps: { external; internal }, prevR, totalR) {
     const deltaTemp = temps.internal - temps.external;
     return temps.internal - deltaTemp * (prevR / totalR);
+  }
+
+  get RTotal() {
+    return this.layers.reduce((Rtotal, layer) => Rtotal + layer.Rvalue, 0);
+  }
+
+  get UValue() {
+    return 1 / this.RTotal;
   }
 
 }

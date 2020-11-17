@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-xl-6">
-      <h3 class="my-3">Seina ristlõike .. arvutus</h3>
+      <h3 class="my-3">Piirde arvutus</h3>
       <p>
         adsfasdf
       </p>
@@ -12,6 +12,43 @@
       <layer-list [(layers)]="layers" [surfaces]="surfaces" [temps]="temp"></layer-list>
     </div>
     <div class="col-md-6">
+      <div class="card my-2">
+        <div class="card-header bg-periwinkle">
+          Tulemused
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="RT-input">Piirde kogusoojustakistus: </label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">
+                    <ng-katex [equation]="'R_t'"></ng-katex> =</span>
+                  </div>
+                  <input [value]="RTotal | number : '1.2-2'" disabled="disabled" type="number" class="form-control" id="RT-input"/>
+                  <div class="input-group-append"><span class="input-group-text">
+                    <ng-katex [equation]="'(m^2·\\!K\\!/W)'"></ng-katex>
+                  </span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="U-input">Piirde soojusläbivus: </label>
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend"><span class="input-group-text">
+                    <ng-katex [equation]="'U'"></ng-katex> =</span>
+                  </div>
+                  <input [value]="UValue | number : '1.2-2'" disabled="disabled" type="number" class="form-control" id="U-input"/>
+                  <div class="input-group-append"><span class="input-group-text">
+                    <ng-katex [equation]="'W/(m^2·\\!K)'"></ng-katex>
+                  </span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <cross-section [layers]="layers" [surfaces]="surfaces" [temps]="temp"></cross-section>
     </div>
   </div>

@@ -9,6 +9,7 @@ import { scaleLinear } from 'd3-scale';
 import { axisRight } from 'd3-axis';
 import { sum as d3sum, bisector } from 'd3-array';
 import { select } from 'd3-selection';
+import 'd3-transition';
 
 
 type SectionLayer = WallLayer & {

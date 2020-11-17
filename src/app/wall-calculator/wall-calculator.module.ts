@@ -6,15 +6,22 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LayerListComponent } from './layer-list/layer-list.component';
 import { CrossSectionComponent } from './cross-section/cross-section.component';
 import { LayerComponent } from './layer-list/layer/layer.component';
-
+import { HatchComponent } from './cross-section/patterns/hatch.component';
 
 
 @NgModule({
-  declarations: [WallCalculatorComponent, LayerListComponent, CrossSectionComponent, LayerComponent],
+  declarations: [
+    WallCalculatorComponent,
+    LayerListComponent,
+    CrossSectionComponent,
+    LayerComponent,
+    HatchComponent
+  ],
   imports: [
     DragDropModule,
     SharedModule,
     WallCalculatorRoutingModule
   ]
 })
-export class WallCalculatorModule { }
+export class WallCalculatorModule {
+}

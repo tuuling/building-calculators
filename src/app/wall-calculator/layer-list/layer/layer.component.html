@@ -45,6 +45,20 @@
     <form *ngIf="edit">
       <div class="form-row">
         <div class="form-group col-md-6 col-lg-3">
+          <label for="inputHatch">Viirutus</label>
+          <select id="inputHatch" class="form-control form-control-sm" name="hatch"
+                  [(ngModel)]="layer.hatch" (ngModelChange)="layerChange.emit(layer)">
+            <option [ngValue]="null">Puudub</option>
+            <option value="battinsul">Mineraalvill</option>
+            <option value="rigidinsul">Plaatsoojustus</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6 col-lg-3">
+
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 col-lg-3">
           <label for="inputThickness">Paksus</label>
           <input [(ngModel)]="layer.thickness" (ngModelChange)="layerChange.emit(layer)"
                  type="number" step="1"
