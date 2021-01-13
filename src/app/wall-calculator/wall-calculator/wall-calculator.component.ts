@@ -19,7 +19,7 @@ export class WallCalculatorComponent {
   layers = List<WallLayer>([
     new WallLayer({ name: 'Kergbetoon', thickness: 150, lambda: 0.24, UUID: v4(), hatch: 'battinsul' }),
     new WallLayer({ name: 'Polüuretaan', thickness: 80, lambda: 0.03, UUID: v4(), hatch: 'rigidinsul' }),
-    new WallLayer({ name: 'Kergbetoon', thickness: 100, lambda: 0.24, UUID: v4(), hatch: 'ansi31' })
+    new WallLayer({ name: 'Kergbetoon', thickness: 300, lambda: 0.24, UUID: v4(), hatch: 'arconc' })
   ]);
 
   temp = { external: -15, internal: 20 };

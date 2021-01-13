@@ -3,6 +3,7 @@ import { battinsul } from './battinsul';
 import { rigidinsul } from './rigidinsul';
 import { ansi31 } from './ansi31';
 import { ansi32 } from './ansi32';
+import { arconc } from './arconc';
 import { BaseHatch } from './baseHatch';
 
 
@@ -10,7 +11,8 @@ const hatches: { [propName: string]: BaseHatch } = {
   battinsul,
   rigidinsul,
   ansi31,
-  ansi32
+  ansi32,
+  arconc
 };
 
 @Component({
